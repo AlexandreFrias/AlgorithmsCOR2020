@@ -1,0 +1,70 @@
+[1] "=========================================================================="
+[1] "Análise descritiva"
+[1] "=========================================================================="
+      Status          UB                 LB             Time     
+ Feasible:210   Min.   :    0.13   Min.   :    0   Min.   :1761  
+                1st Qu.:  146.02   1st Qu.:    0   1st Qu.:1798  
+                Median : 1951.33   Median :    0   Median :1799  
+                Mean   :14303.46   Mean   : 1248   Mean   :1797  
+                3rd Qu.:29153.33   3rd Qu.:    0   3rd Qu.:1800  
+                Max.   :56535.80   Max.   :45184   Max.   :1800  
+      Status          UB                 LB               Time     
+ Feasible:210   Min.   :   39.71   Min.   :    0.0   Min.   :1707  
+                1st Qu.: 1749.71   1st Qu.:    0.0   1st Qu.:1799  
+                Median : 9102.22   Median :    0.0   Median :1799  
+                Mean   :28504.28   Mean   :  377.1   Mean   :1789  
+                3rd Qu.:59631.55   3rd Qu.:    0.0   3rd Qu.:1800  
+                Max.   :96176.20   Max.   :18418.0   Max.   :1800  
+      Status          UB                 LB               Time     
+ Feasible:210   Min.   :   254.9   Min.   :    0.0   Min.   :1755  
+                1st Qu.:  4213.8   1st Qu.:    0.0   1st Qu.:1799  
+                Median : 15769.0   Median :    0.0   Median :1799  
+                Mean   : 37841.8   Mean   :  443.1   Mean   :1798  
+                3rd Qu.: 77292.1   3rd Qu.:    0.0   3rd Qu.:1799  
+                Max.   :113213.0   Max.   :19955.0   Max.   :1800  
+      Status          UB                 LB             Time     
+ Feasible:209   Min.   :    0.25   Min.   :    0   Min.   :1271  
+ Optimal :  1   1st Qu.:  121.06   1st Qu.:    0   1st Qu.:1797  
+                Median : 1899.38   Median :    0   Median :1800  
+                Mean   :14481.81   Mean   : 1263   Mean   :1795  
+                3rd Qu.:29184.12   3rd Qu.:    0   3rd Qu.:1800  
+                Max.   :58791.40   Max.   :50556   Max.   :1800  
+
+                
+\begin{table}[]
+\begin{tabular}{lllll}
+
+Status         & Measure   & UB       & LB      & Time \\
+Feasible: 209  & Min.      & 0.25     & 0       & 1271 \\
+Optimal: 1     & 1st Qu.   & 121.06   & 0       & 1797 \\
+               & Median    & 1899.38  & 0       & 1800 \\
+               & Mean      & 14481.81 & 1263    & 1795 \\
+               & 3rd Qu.   & 29184.12 & 0       & 1800 \\
+               & Max.      & 58791.40 & 50556   & 1800 \\ 
+
+Status         & Measure   & UB       & LB    & Time \\
+Feasible: 210  & Min.      & 0.13     & 0     & 1761 \\
+               & 1st Qu.   & 146.02   & 0     & 1798 \\
+               & Median    & 1951.33  & 0     & 1799 \\
+               & Mean      & 14303.46 & 1248  & 1797 \\
+               & 3rd Qu.   & 29153.33 & 0     & 1800 \\
+               & Max.      & 56535.80 & 45184 & 1800 \\
+
+Status         & Measure   & UB       & LB      & Time \\                    
+Feasible: 210  & Min.      & 39.71    & 0.0     & 1707 \\
+               & 1st Qu.   & 1749.71  & 0.0     & 1799 \\
+               & Median    & 9102.22  & 0.0     & 1799 \\
+               & Mean      & 28504.28 & 377.1   & 1789 \\
+               & 3rd Qu.   & 59631.55 & 0.0     & 1800 \\
+               & Max.      & 96176.20 & 18418.0 & 1800 \\
+
+Status         & Measure   & UB       & LB      & Time \\                  
+Feasible: 210  & Min.      & 254.9    & 0.0     & 1755 \\
+               & 1st Qu.   & 4213.8   & 0.0     & 1799 \\
+               & Median    & 15769.0  & 0.0     & 1799 \\
+               & Mean      & 37841.8  & 443.1   & 1798 \\
+               & 3rd Qu.   & 77292.1  & 0.0     & 1799 \\
+               & Max.      & 113213.0 & 19955.0 & 1800 \\
+
+\end{tabular}
+\end{table}
