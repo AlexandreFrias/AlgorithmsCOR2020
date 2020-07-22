@@ -61,8 +61,21 @@ wilcox.test(result0$UB, result3$UB, alternative =  "less", paired = TRUE, var.eq
 wilcox.test(result0$LB, result3$LB, alternative =  "greater", paired = TRUE, var.equal = TRUE, conf.level = 0.95)
 wilcox.test(result0$Time, result3$Time, alternative =  "two.sided", paired = TRUE, var.equal = FALSE, conf.level = 0.95)
 
-#MDMWNPP comparison between MILP and Memetic Algorithm
+#MDMWNPP comparison between MILP and Memetic Algorithm, only instances "a"
 res = read.csv("inst_a.csv", header = TRUE, sep = "\t")
 summary(res)
 wilcox.test(res$mak3, res$modk3, alternative =  "less", paired = TRUE, conf.level = 0.95)
 wilcox.test(res$mak4, res$modk4, alternative =  "less", paired = TRUE, conf.level = 0.95)
+
+#MDTWNPP comparison between MILP and Memetic Algorithm, all instances
+res2 = read.csv("ma_vs_mip.csv", header = TRUE, sep = ",")
+summary(res2)
+wilcox.test(res2$man50, res2$mipn50, alternative =  "less", paired = TRUE, conf.level = 0.95)
+wilcox.test(res2$man100, res2$mipn100, alternative =  "less", paired = TRUE, conf.level = 0.95)
+wilcox.test(res2$man200, res2$mipn200, alternative =  "less", paired = TRUE, conf.level = 0.95)
+wilcox.test(res2$man300, res2$mipn300, alternative =  "less", paired = TRUE, conf.level = 0.95)
+wilcox.test(res2$man400, res2$mipn400, alternative =  "less", paired = TRUE, conf.level = 0.95)
+wilcox.test(res2$man500, res2$mipn500, alternative =  "less", paired = TRUE, conf.level = 0.95)
+
+
+
