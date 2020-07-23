@@ -32,11 +32,12 @@ summary(result1)
 summary(result2)
 summary(result3)
 
-print(xtable(summary(result0)))
+#Printing as latex table
+#print(xtable(summary(result0)))
 
-boxplot(result0$UB, result3$UB)
-boxplot(result0$LB, result3$LB)
-boxplot(result0$Time, result3$Time)
+#boxplot(result0$UB, result3$UB)
+#boxplot(result0$LB, result3$LB)
+#boxplot(result0$Time, result3$Time)
 
 print('==========================================================================')
 print(' t-test and its assumptions')
@@ -51,25 +52,41 @@ shapiro.test(result3$UB)
 shapiro.test(result3$LB)
 shapiro.test(result3$Time)
 
-#verify the equality of variance
+#Verifying the equality of variances
 var.test(result0$UB, result3$UB, alternative = "two.sided")
 var.test(result0$LB, result3$LB, alternative = "two.sided")
 var.test(result0$Time, result3$Time, alternative = "two.sided") #without equality
 
-#Wilcoxon test
+print('==========================================================================')
+print(' Wilcoxon test 1')
+print('==========================================================================')
+
+
+#Wilcoxon test for milps using k=2
 wilcox.test(result0$UB, result3$UB, alternative =  "less", paired = TRUE, var.equal = TRUE, conf.level = 0.95)
 wilcox.test(result0$LB, result3$LB, alternative =  "greater", paired = TRUE, var.equal = TRUE, conf.level = 0.95)
 wilcox.test(result0$Time, result3$Time, alternative =  "two.sided", paired = TRUE, var.equal = FALSE, conf.level = 0.95)
 
-#MDMWNPP comparison between MILP and Memetic Algorithm, only instances "a"
+print('==========================================================================')
+print(' Wilcoxon test 2')
+print('==========================================================================')
+
+#MDMWNPP comparison between MILP and Memetic Algorithm for k=3,4, only instances "a"
 res = read.csv("inst_a.csv", header = TRUE, sep = "\t")
 summary(res)
+qsignrank(0.05, 14, lower.tail=TRUE)
 wilcox.test(res$mak3, res$modk3, alternative =  "less", paired = TRUE, conf.level = 0.95)
 wilcox.test(res$mak4, res$modk4, alternative =  "less", paired = TRUE, conf.level = 0.95)
 
-#MDTWNPP comparison between MILP and Memetic Algorithm, all instances
+print('==========================================================================')
+print(' Wilcoxon test 3')
+print('==========================================================================')
+
+#MDTWNPP comparison between MILP and Memetic Algorithm, all instances using k=2
 res2 = read.csv("ma_vs_mip.csv", header = TRUE, sep = ",")
 summary(res2)
+#print(xtable(summary(res2)))
+qsignrank(0.05, 35, lower.tail=TRUE)
 wilcox.test(res2$man50, res2$mipn50, alternative =  "less", paired = TRUE, conf.level = 0.95)
 wilcox.test(res2$man100, res2$mipn100, alternative =  "less", paired = TRUE, conf.level = 0.95)
 wilcox.test(res2$man200, res2$mipn200, alternative =  "less", paired = TRUE, conf.level = 0.95)
