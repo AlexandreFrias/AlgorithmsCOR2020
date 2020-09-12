@@ -18,41 +18,61 @@ int index2(int j, int i, int d){
     return i;
 }
 
+void libera_matriz(double **matriz, int lin){
+	int i;
+	for(i = 0; i < lin; i++){
+		free(matriz[i]);
+	}
+	free(matriz);
+
+	matriz=NULL;
+}
+
+double **leitura(char tipo){
+
+	
+	FILE *arquivo;
+	char inst[30];
+
+	sprintf(inst, "inst/mdtwnpp_500_20%c.txt", tipo);
+	arquivo = fopen(inst,"r");
+
+	double **v;
+	int i,l,n,d;
+
+	fscanf(arquivo, "%d\t%d\n",&n,&d);
+
+	v = (double **)malloc (n*sizeof (double *));
+	for ( i = 0; i < n; i++){
+		v[i] = (double *)malloc(d*sizeof (double));
+	}
+
+	for(i=0; i<n; i++){
+		for(l=0; l<d; l++){
+			fscanf(arquivo, "%lf\t", &v[i][l]);
+		}
+		fscanf(arquivo, "\n");
+	}
+	fclose(arquivo);
+
+	return v;
+}
+
 //==========================================================
 // modelo com menos variáveis
 //==========================================================
 
-void MDMWNPP(int n, int k, int d, char tipo){
+void MDMWNPP(double **v, int n, int k, int d, char tipo){
     IloEnv env;
     try {
-    	//==================================================
-    	// carrega a instância
-    	//==================================================
+    	//=======================================================
+    	// instance data and indexes
+    	//=======================================================
 
-		//int n, k, d;
-
-		FILE *arquivo;
-		char inst[30];
-
-		int j, j1, j2, i, l; //l coordenada
-
-		sprintf(inst, "inst/mdtwnpp_500_20%c.txt", tipo);
-		arquivo = fopen(inst,"r");
-
-		double v[n][d];
-
-		fscanf(arquivo, "%d\t%d\n",&i,&j);
-
-		for(i=0; i<n; i++){
-			for(l=0; l<d; l++){
-				fscanf(arquivo, "%lf\t", &v[i][l]);
-			}
-			fscanf(arquivo, "\n");
-		}
-
-		fclose(arquivo);
-		
+		int j, j1, j2, i, l; 
 		int N = n*k;
+		char inst[30];
+		sprintf(inst, "%d_%d_%d%c", k, n, d, tipo); 
 
 		//=======================================================
 		// define variáveis
@@ -115,7 +135,6 @@ void MDMWNPP(int n, int k, int d, char tipo){
     	
         cplex.solve();
         
-        sprintf(inst, "%d_%d_%d%c", k, n, d, tipo); 
         env.out()  << inst << "\t" << cplex.getStatus() << "\t" << cplex.getObjValue() << "\t"<< cplex.getBestObjValue() << "\t" << env.getTime() << endl;
 
         cplex.end(); //método de solução
@@ -135,13 +154,16 @@ int main(int argc, char* argv[]){
 	int k = atof(argv[1]);
 	int n[] = {50, 100, 200, 300, 400, 500};
 	int d[] = {2, 3, 4, 5, 10, 15, 20};
+	double **v;
 	
 	for(int itipo=0; itipo<5; itipo++){
+		v=leitura(tipo[itipo]);
 		for(int in=0; in<6; in++){
 			for(int id=0; id<7; id++){
-				MDMWNPP(n[in], k, d[id], tipo[itipo]);
+				MDMWNPP(v, n[in], k, d[id], tipo[itipo]);
 			}
 		}
+		libera_matriz(v,500);
 	}
 	
 	/*
@@ -149,8 +171,9 @@ int main(int argc, char* argv[]){
 	int k=2;
 	int d=3;
 	char tipo='a';
+	double **v=leitura(tipo);
 
-	MDMWNPP(n,k,d,tipo);
+	MDMWNPP(v,n,k,d,tipo);
 	*/
  	
  	return 0;
